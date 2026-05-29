@@ -1,0 +1,125 @@
+# Theme: entune_audio_ext_font
+# Version 1.0
+# Last Update: 05/29/2026
+# License: CC-BY-SA 3.0
+# By: Monica G.
+# Description: Theme based on the Entune Audio media system. The font used is the YuGothic font by JIYUKOBO. **THIS IS WHY THE FILE SIZE IS SO BIG** The font supports kanji, kana, mandarin and many other languages (see full list in config file). All pixel art is by me. All icons are made by me and/or updated from my previous themes. (minimal_RTC_sync and bunnyPod).
+# Code based on: minimal_RTC_sync and bunnyPod which were based on SNARTY by Simon Anden and BONES by Chuck Largo!
+
+## WPS File ##
+
+#Hide The Status Bar
+%wd
+
+# Preload Backdrop #
+%xl(etune_wps,etune_wps.bmp,0,0)
+
+# Clear Backdrop
+%V(0,0,-,-,-)%VB
+%xd(etune_wps)
+%V(0,0,-,-,-)
+
+# Preload Fonts
+%Fl(3,16-YuGothB.fnt)
+%Fl(4,20-YuGothM.fnt)
+
+# Preload Images
+%xl(playmodes,playmodes.bmp,0,0,9)
+%xl(repeat,repeat_status.bmp,0,0,5)
+%xl(shuffle,shuffle.bmp,0,0,2)
+%xl(battery,battery.bmp,0,0,12)
+%xl(PB,pb.bmp,0,0)
+%xl(PBB,pb_back.bmp,0,0)
+%xl(VB,vb.bmp,0,0)
+%xl(VBB,vb_back.bmp,0,0)
+%xl(disk,disk.bmp,0,0,5)
+%xl(lock,lock.bmp,0,0,2)
+
+# Main Display
+%Vd(mainDisplay)
+
+# Clear Screen
+%Vl(mainDisplay,0,0,320,240,-)
+
+## Album Art ##
+%Vl(mainDisplay,6,34,100,100,-)
+%Cl(0,0,99,99)
+%?C<%Cd>
+
+## Main Display ##
+
+# Disk
+%Vl(mainDisplay,216,7,16,16,-)
+%?lh<%t(0.1)%xd(disk,5);%t(0.1)%xd(disk,1);%t(0.1)%xd(disk,2);%t(0.1)%xd(disk,3);%t(0.1)%xd(disk,4)|%xd(disk,5)>
+
+# Hold Icon
+%Vl(mainDisplay,265,6,50,18,-)
+%?mh<%xd(lock,1)|%xd(lock,2)>
+
+# Battery Icon
+%Vl(mainDisplay,235,6,22,18,-)
+%?bp<%xd(battery,7)|%?bl<%xd(battery,6)|%xd(battery,5)|%xd(battery,4)|%xd(battery,3)|%xd(battery,2)|%xd(battery,1)>>%?bp<%?bc<%?bl<%xd(battery,12)|%xd(battery,11)|%xd(battery,10)|%xd(battery,9)|%xd(battery,8)|%xd(battery,7)>|%?bl<%xd(battery,6)|%xd(battery,5)|%xd(battery,4)|%xd(battery,3)|%xd(battery,2)|%xd(battery,1)>>>
+
+# Playlist Number
+%Vl(mainDisplay,135,134,175,16,3)
+%acTrack %pp of %pe
+
+# Shuffle Icon
+%Vl(mainDisplay,112,217,50,18,-)
+%?ps<%xd(shuffle,1)|%xd(shuffle,2)>
+
+# Repeat Icon
+%Vl(mainDisplay,163,217,50,18,-)
+%?mm<%xd(repeat,5)|%xd(repeat,1)|%xd(repeat,2)|%xd(repeat,3)|%xd(repeat,4)>|>
+
+# Play/Pause Icons
+%Vl(mainDisplay,214,217,50,18,-)
+%?if(%mp, >, 1)<%xd(playmodes,%mp)|>
+
+# Volume Bar
+%Vl(mainDisplay,85,5,120,18,-)
+%?mv<%pv(0,0,120,18,VBB,backdrop,VB)|>
+
+# Volume Level
+%Vl(mainDisplay,278,219,36,16,3)
+%al%?if(%pv, >, 0)<+|>%pvdB
+
+# Time
+%Vl(mainDisplay,5,6,70,20,4)
+%al%?cf<%cH|%cl>:%cM%?cf<| %cP>
+
+# File Details
+%Vl(mainDisplay,6,140,98,16,3)
+%ar%?it<%?iy<%ss(0,4,%iy)>|>
+%Vl(mainDisplay,6,156,98,16,3)
+%ar%fc
+%Vl(mainDisplay,6,172,98,16,3)
+%ar%fb kbps
+%Vl(mainDisplay,6,188,98,16,3)
+%ar%fk kHz
+
+# Track Progress Bar
+%Vl(mainDisplay,115,195,197,9,-)%Vf(-)%Vb(-)
+%pb(0,0,-,9,PBB,backdrop,PB)
+
+# Time Elapsed
+%Vl(mainDisplay,115,180,50,16,3)
+%al%pc
+
+# Time Remaining
+%Vl(mainDisplay,261,180,50,16,3)
+%ar-%pr
+
+## Track info ##
+
+# Artist
+%Vl(mainDisplay,135,42,175,16,3)
+%ac%s%?ia<%ia>
+
+# Track Title
+%Vl(mainDisplay,135,73,175,16,3)
+%ac%s%?it<%s%it|%fn>
+
+# Album
+%Vl(mainDisplay,135,105,175,16,3)
+%ac%s%?id<%id>
